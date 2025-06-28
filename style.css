@@ -1,0 +1,59 @@
+@import url('modern-normalize.css');
+
+:root {
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: clamp(1rem, 0.75rem + 1.5vw, 2rem);
+}
+
+h1, h2, h3, h4, h5, figure, p, ol, ul {
+  margin: 0;
+}
+
+ol[role="list"], ul[role="list"] {
+  list-style: none;
+  padding-inline: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+}
+
+/* END TEMPLATE */
+
+body {
+    display: grid;
+}
+
+#intro {
+  font-size: .8rem;
+  /* box-shadow: 10px 10px 10px linear-gradient(90deg, #4b6cb7 0%, #182848 100%); */
+  box-shadow: 15px 10px 25px 0 #4b6cb7,
+              15px 30px 5px 0px #182848;
+  width: 75vw;
+  align-self: center;
+  margin-left: 1%;
+  margin-top: 1%;
+}
+
+/* #resume {
+    color: blanchedalmond;   
+} */
+
+#resume a:hover {
+  font-weight: 600;
+  color: dodgerblue;
+}
+
+#resume a:visited {
+    color: dodgerblue;
+}
