@@ -56,7 +56,7 @@ body {
   margin-top: 15px;
 }
 
-#resume a:hover {
+#resume a:hover, #projects a:hover {
   font-weight: 600;
   color: dodgerblue;
 }
@@ -70,6 +70,3 @@ h2 {
   margin: 10px auto;
 }
 
-#projects {
-
-}
