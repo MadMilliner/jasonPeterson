@@ -30,8 +30,14 @@ img {
 
 /* END TEMPLATE */
 
+
 body {
     display: grid;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
 }
 
 #bio {
@@ -43,6 +49,7 @@ body {
   align-self: center;
   margin-left: 1%;
   margin-top: 1%;
+  padding: 2%;
 }
 
 #resume {
@@ -54,6 +61,15 @@ body {
   color: dodgerblue;
 }
 
-#resume a:visited {
+a:visited {
     color: dodgerblue;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 10px auto;
+}
+
+#projects {
+
 }
