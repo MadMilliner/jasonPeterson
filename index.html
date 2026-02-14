@@ -1,39 +1,470 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>jasonPeterson</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Peterson - Full Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e27;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent-1: #00d9ff;
+            --accent-2: #ff006e;
+            --accent-gradient: linear-gradient(135deg, #00d9ff 0%, #ff006e 100%);
+            --glow: 0 0 30px rgba(0, 217, 255, 0.3);
+        }
 
-        <meta http-equiv='cache-control' content='no-cache'>
-    </head>
-    <body>
-       <div id="bio">
-           <h3>Hello, my name is Jason Peterson.</h3>
-           <p>I have been learning web development and software engineering. Currently working on React, Python, and website backend.</p>
-           <p> I have been in video post production for the past 15 years as a junior editor, assistant editor, online/finishing editor, post coordinator, and post manager.</p>
-           <p><a href="mailto:jasonapeterson@gmail.com">jasonapeterson@gmail.com</a></p>
-           
-           <div id="resume">
-            <p><a href="https://github.com/MadMilliner/" target="_blank">View my GitHub here</a></p>
-            <p><a href="https://www.linkedin.com/in/jasonapeterson/" target="_blank">You can see my LinkedIn</a></p>
-            <p><a href="jasonPeterson_resume.pdf" target="_blank">And download my resume here</a></p>           
-           </div>
-           <h2>Projects</h2>
-           <div id="projects">
-                <p><a href="https://battletracker.all5espells.com/">D&D Battle Tracker</a></p>
-                <p><a href="https://madmilliner.github.io/todoList/dist/index.html" target="_blank">Taskmaster 9000 (to-do list)</a></p>
-                <p><a href="https://madmilliner.github.io/restaurant/" target="_blank">Restaurant template</a></p>
-                <p>More coming soon, feel free to ask what I am working on</p>
-           </div>
-       </div>
-        
-        <script src="script.js" async defer></script>
-    </body>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background gradient orbs */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: 0;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        body::before {
+            width: 600px;
+            height: 600px;
+            background: var(--accent-1);
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+
+        body::after {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-2);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -100px) scale(1.1); }
+            66% { transform: translate(-50px, 100px) scale(0.9); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        /* Glass card effect */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease-out backwards;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        .glass-card:nth-child(2) { animation-delay: 0.6s; }
+        .glass-card:nth-child(3) { animation-delay: 0.8s; }
+        .glass-card:nth-child(4) { animation-delay: 1s; }
+
+        /* About section */
+        .about {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .about p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: var(--accent-1);
+            font-weight: 500;
+        }
+
+        /* Section headings */
+        h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        /* Contact links */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            opacity: 0.1;
+            transition: left 0.4s ease;
+        }
+
+        .contact-link:hover::before {
+            left: 0;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent-1);
+            transform: translateX(5px);
+        }
+
+        .contact-link svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent-1);
+        }
+
+        /* Projects section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+        }
+
+        .project-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-card a {
+            color: var(--accent-1);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            transition: gap 0.3s ease;
+        }
+
+        .project-card a:hover {
+            gap: 1rem;
+        }
+
+        .project-card a::after {
+            content: '→';
+            font-size: 1.25rem;
+        }
+
+        /* Coming soon tag */
+        .coming-soon {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 0, 110, 0.1);
+            border: 1px solid rgba(255, 0, 110, 0.3);
+            border-radius: 100px;
+            color: var(--accent-2);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-top: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            animation: fadeInUp 1s ease-out 1.2s backwards;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s forwards, bounce 2s ease-in-out 2s infinite;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-1);
+            border-radius: 50%;
+            animation: scroll 2s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="scroll-indicator"></div> -->
+    
+    <div class="container">
+        <header>
+            <h1>Jason Peterson</h1>
+            <p class="tagline">Full Stack Developer specializing in React, Python, and modern web technologies. 15 years of creative excellence in video post production.</p>
+        </header>
+
+        <main>
+            <section class="glass-card about">
+                <p>I've been mastering the art of <span class="highlight">web development and software engineering</span>, currently diving deep into React, Python, and backend architectures. With a rich background spanning 15 years in video post production—from junior editor to post manager—I bring a unique blend of technical precision and creative vision to every project I build.</p>
+            </section>
+
+            <section class="glass-card">
+                <h2>Get in Touch</h2>
+                <div class="contact-grid">
+                    <a href="mailto:jasonapeterson@gmail.com" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        Email Me
+                    </a>
+                    <a href="https://github.com/MadMilliner/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/jasonapeterson/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        LinkedIn
+                    </a>
+                    <a href="jasonPeterson_resume.pdf" class="contact-link" download>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                        Resume
+                    </a>
+                </div>
+            </section>
+
+            <section class="glass-card">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>D&D Battle Tracker</h3>
+                        <p style="color: var(--text-secondary); margin: 0.5rem 0;">A comprehensive combat management tool for Dungeons & Dragons, streamlining initiative tracking and battle flow.</p>
+                        <a href="http://battletracker.simulacrumtechnologies.com/" target="_blank" rel="noopener noreferrer">View Project</a>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Taskmaster 9000</h3>
+                        <p style="color: var(--text-secondary); margin: 0.5rem 0;">An elegant to-do list application built with modern JavaScript, featuring intuitive task management.</p>
+                        <a href="https://madmilliner.github.io/todoList/dist/index.html" target="_blank" rel="noopener noreferrer">View Project</a>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Restaurant Template</h3>
+                        <p style="color: var(--text-secondary); margin: 0.5rem 0;">A responsive restaurant website template showcasing modern design patterns and smooth user experience.</p>
+                        <a href="https://madmilliner.github.io/restaurant/" target="_blank" rel="noopener noreferrer">View Project</a>
+                    </div>
+                </div>
+                <p class="coming-soon">✨ More exciting projects coming soon! Feel free to ask what I'm working on.</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>Designed & built with precision by Jason Peterson © 2026</p>
+        </footer>
+    </div>
+</body>
 </html>
