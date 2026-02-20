@@ -236,7 +236,7 @@ h1 {
   font-size: 1.125rem;
   color: var(--text-secondary);
   max-width: 800px;
-  margin: 0 auto 2rem;
+  margin: 0 auto .5rem;
   line-height: 1.8;
 }
 
