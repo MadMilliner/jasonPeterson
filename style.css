@@ -194,6 +194,13 @@ h1 {
   animation: fadeInUp 1s ease-out 0.4s backwards;
 }
 
+header .plus {
+  display: inline-block;
+  font-size: 0.7em;
+  line-height: 1;
+  vertical-align: middle;
+}
+
 /* ========================================
    Glass Card Effect
    ======================================== */
